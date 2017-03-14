@@ -67,10 +67,10 @@ Stage *CreateStage(string line) {
 	strcpy(unit, splitLine[3].c_str());
 	kill = atoi(splitLine[4].c_str());
 	checkMate = atoi(splitLine[5].c_str());
-	cout << unit << " ";
 
 	Stage *stage = new Stage(host, position, unit[0], checkMate, kill);
 	stage->changeBoard();
+	stage->printBoard();
 
 	return stage;
 }

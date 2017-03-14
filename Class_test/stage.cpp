@@ -9,7 +9,7 @@ Stage::Stage() {
 }
 Stage::Stage(int hostNum, int pos[], char unitState, int check, int killed) {
 	host = hostNum;
-	memcpy(position, pos, sizeof(pos));
+	memcpy(position, pos, sizeof(int) * 2);
 	/*strcpy(unit, unitState);*/
 	unit = unitState;
 	checkMate = check;
@@ -360,9 +360,9 @@ void Stage::changeBoard() {
 	int oldPos2 = position[0] % 10;
 	int newPos1 = position[1] / 10;
 	int newPos2 = position[1] % 10;
-	/*strcpy(arr[newPos1][newPos2], unit);
-	arr[oldPos1][oldPos1] = '*';
-	arr[newPos1][newPos2] = unit;*/
+	/*strcpy(arr[newPos1][newPos2], unit);*/
+	arr[oldPos1][oldPos2] = '*';
+	arr[newPos1][newPos2] = unit;
 }
 //제일 처음에는 마상마상 & 마상마상 으로 Initialize
 char Stage::arr[HEIGHT_SIZE][WIDTH_SIZE] = {
@@ -378,3 +378,12 @@ char Stage::arr[HEIGHT_SIZE][WIDTH_SIZE] = {
 	{ '*', '*', '*', '*', '*', 'k', '*', '*', '*', '*' },
 	{ '*', 'c', 'h', 'x', 's', '*', 's', 'h', 'x', 'c' }
 };
+void Stage::printBoard() {
+	for (int i = 1; i < HEIGHT_SIZE; i++) {
+		for (int j = 1; j < WIDTH_SIZE; j++) {
+			cout << arr[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}

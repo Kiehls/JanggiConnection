@@ -32,6 +32,7 @@ public:
 	int getKill();
 	void initailzeBoard(int *speciality);
 	void changeBoard();
+	void printBoard();
 };
 
 #endif
