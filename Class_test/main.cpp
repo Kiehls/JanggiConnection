@@ -15,6 +15,8 @@ char to_English[7] = { 'J', 'H','P', 'C', 'X', 'S', 'K' };
 
 //초이 선공(소문자) 한이 후공(대문자)
 
+static int wow = 1;
+
 int main() {
 
 	ifstream inStream("testFile.txt");
@@ -69,6 +71,8 @@ Stage *CreateStage(string line) {
 	checkMate = atoi(splitLine[5].c_str());
 
 	Stage *stage = new Stage(host, position, unit[0], checkMate, kill);
+	cout << wow << endl;
+	wow++;
 	stage->changeBoard();
 	stage->printBoard();
 
