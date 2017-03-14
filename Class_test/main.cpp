@@ -6,6 +6,7 @@ void CreatePlay(string line);
 bool CheckLine(string line);
 Stage *CreateStage(string line);
 string *StringSplit(string target);
+void convertString(string line, int i, int *data);
 
 //Infromation Data
 char* HorseSequence[4] = { "마상마상", "마상상마", "상마마상", "상마상마" };
@@ -24,21 +25,30 @@ int main() {
 	string line;
 	Play *game[100];
 	int reportNumber, spciality[2] = { 0, }, victory;
+	int data[3] = { 0, };
 	int index = 0;
 	while (!inStream.eof()) {
-		inStream >> line;
+		/*inStream >> line;*/
+		getline(inStream, line);
 		//기보 시작인지 내용인지 검사
 		if (CheckLine(line)) {
+			cout << endl << "new file " << index << endl;
 			reportNumber = atoi(line.c_str());
-			inStream >> spciality[0] >> spciality[1] >> victory;
+			for (int i = 0; i < 3; i++) {
+				getline(inStream, line);
+				convertString(line, i, data);
+			}
+			memcpy(spciality, data, sizeof(int) * 2);
+			victory = data[2];
 			Play *gameReport = new Play(reportNumber, spciality, victory);
 			Stage *state = new Stage();
 			state->initailzeBoard(spciality);
 			gameReport->insertStage(state);
-			game[index] = gameReport;
+			game[index++] = gameReport;
 		}
 		else {
-			game[index]->insertStage(CreateStage(line));
+			int tempIndex = index - 1;
+			game[tempIndex]->insertStage(CreateStage(line));
 		}
 	}
 	return 0;
@@ -47,7 +57,7 @@ void CreatePlay(string line) {
 
 }
 Stage *CreateStage(string line) {
-	int position[2]; char *unit;
+	int position[2]; char *unit = new char(2);
 	int host, kill, checkMate;
 	string* splitLine = StringSplit(line);
 
@@ -57,8 +67,9 @@ Stage *CreateStage(string line) {
 	strcpy(unit, splitLine[3].c_str());
 	kill = atoi(splitLine[4].c_str());
 	checkMate = atoi(splitLine[5].c_str());
+	cout << unit << " ";
 
-	Stage *stage = new Stage(host, position, unit, checkMate, kill);
+	Stage *stage = new Stage(host, position, unit[0], checkMate, kill);
 	stage->changeBoard();
 
 	return stage;
@@ -93,4 +104,8 @@ string *StringSplit(string target) {
 	}
 
 	return strResult;
+}
+
+void convertString(string line, int i, int *data) {
+	data[i] = atoi(line.c_str());
 }

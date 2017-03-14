@@ -3,7 +3,6 @@
 Play::Play() {
 	reportNumber = 0;
 	victory = 0;
-	/*specialty = (int*)calloc(0, sizeof(int) * 2);*/
 	memset(specialty, 0, sizeof(int) * 2);
 	for (int i = 0; i < MIN; i++) {
 		stages[i] = NULL;
@@ -12,8 +11,10 @@ Play::Play() {
 Play::Play(int reportNum, int spe[], int vic)
 :reportNumber(reportNum), victory(vic)
 {
-	//Error Code
 	memcpy(specialty, spe, sizeof(int) * 2);
+	for (int i = 0; i < MIN; i++) {
+		stages[i] = NULL;
+	}
 }
 void Play::insertStage(Stage *stage) {
 	int size = getStagesLength();
@@ -21,7 +22,7 @@ void Play::insertStage(Stage *stage) {
 		cout << "Stage size overflow" << endl;
 	}
 	else {
-		stages[size - 1] = stage;
+		stages[size] = stage;
 	}
 }
 void Play::recordPlay(int report, int spe[], int vic) {

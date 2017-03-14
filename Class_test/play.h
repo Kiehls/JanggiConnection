@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <string>
 #include <algorithm>
+#include <vector>
 #include "stage.h"
 
 #define MIN 200
@@ -16,9 +17,10 @@ using namespace std;
 class Play {
 private:
 	int reportNumber;
-	int *specialty;//차림
+	int specialty[2];//차림
 	int victory;
 	Stage *stages[MIN];
+	/*vector<Stage> *stages[MIN];*/
 public:
 	Play();
 	Play(int reportNum, int spe[], int vic);

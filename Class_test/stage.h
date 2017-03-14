@@ -14,17 +14,20 @@ using namespace std;
 class Stage {
 private:
 	int host;
-	int *position;
-	char *unit;
+	int position[2];
+	char unit;
+	/*char *unit;*/
 	int checkMate;
 	int kill;
 	static char arr[HEIGHT_SIZE][WIDTH_SIZE];
 public:
 	Stage();
-	Stage(int hostNum, int pos[], char *unit, int check, int killed);
+	/*Stage(int hostNum, int pos[], char *unit, int check, int killed);*/
+	Stage(int hostNum, int pos[], char unit, int check, int killed);
 	int getHost();
 	int* getPosition();
-	char* getUnit();
+	/*char* getUnit();*/
+	char getUnit();
 	int getCheckMate();
 	int getKill();
 	void initailzeBoard(int *speciality);
