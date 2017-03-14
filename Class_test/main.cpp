@@ -12,6 +12,8 @@ char* HorseSequence[4] = { "마상마상", "마상상마", "상마마상", "상마상마" };
 char* Korean_character[8] = { "졸", "병", "마", "포","차", "상", "사","장" };
 char to_English[7] = { 'J', 'H','P', 'C', 'X', 'S', 'K' };
 
+//초이 선공(소문자) 한이 후공(대문자)
+
 int main() {
 
 	ifstream inStream("testFile.txt");
@@ -22,6 +24,7 @@ int main() {
 	string line;
 	Play *game[100];
 	int reportNumber, spciality[2] = { 0, }, victory;
+	int index = 0;
 	while (!inStream.eof()) {
 		inStream >> line;
 		//기보 시작인지 내용인지 검사
@@ -32,10 +35,10 @@ int main() {
 			Stage *state = new Stage();
 			state->initailzeBoard(spciality);
 			gameReport->insertStage(state);
-			game[0] = gameReport;
+			game[index] = gameReport;
 		}
 		else {
-			CreateStage(line);
+			game[index]->insertStage(CreateStage(line));
 		}
 	}
 	return 0;
@@ -56,6 +59,7 @@ Stage *CreateStage(string line) {
 	checkMate = atoi(splitLine[5].c_str());
 
 	Stage *stage = new Stage(host, position, unit, checkMate, kill);
+	stage->changeBoard();
 
 	return stage;
 }

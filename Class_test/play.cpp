@@ -3,7 +3,8 @@
 Play::Play() {
 	reportNumber = 0;
 	victory = 0;
-	specialty = (int*)calloc(0, sizeof(int) * 2);
+	/*specialty = (int*)calloc(0, sizeof(int) * 2);*/
+	memset(specialty, 0, sizeof(int) * 2);
 	for (int i = 0; i < MIN; i++) {
 		stages[i] = NULL;
 	}
@@ -11,7 +12,8 @@ Play::Play() {
 Play::Play(int reportNum, int spe[], int vic)
 :reportNumber(reportNum), victory(vic)
 {
-	memcpy(specialty, spe, sizeof(spe));
+	//Error Code
+	memcpy(specialty, spe, sizeof(int) * 2);
 }
 void Play::insertStage(Stage *stage) {
 	int size = getStagesLength();

@@ -28,6 +28,7 @@ public:
 	int getCheckMate();
 	int getKill();
 	void initailzeBoard(int *speciality);
+	void changeBoard();
 };
 
 #endif

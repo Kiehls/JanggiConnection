@@ -6,6 +6,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <string>
+#include <algorithm>
 #include "stage.h"
 
 #define MIN 200

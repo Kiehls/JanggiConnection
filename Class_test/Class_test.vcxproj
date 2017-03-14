@@ -142,6 +142,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="play.cpp" />
+    <ClCompile Include="stage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="play.h" />
+    <ClInclude Include="stage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="testFile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
